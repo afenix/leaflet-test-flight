@@ -11,10 +11,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.6.0/leaflet.js"></script>
 
     <!-- load jQuery, use newest version at https://code.jquery.com   -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Leaflet Geoserver plugin -->
+    <script type="text/javascript" src="./node_modules/leaflet-geoserver-request/src/L.Geoserver.js"></script>
 
     <!-- Load Esri Leaflet, use newest version at http://esri.github.io/esri-leaflet -->
     <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+
+    node_modules\leaflet-geoserver-request\src\L.Geoserver.js
 
     <!-- style the map -->
     <style>
@@ -64,6 +69,11 @@
       position: "topright",
       collapsed: false // false = open by default
     }).addTo(map)
+
+    var wmsLayer = L.Geoserver.wms("http://ec2-184-72-31-222.us-west-1.compute.amazonaws.com:8080/geoserver/wms", {
+      layers: "PostGIS_Data:CritHabitat_point",
+    });
+    wmsLayer.addTo(map);
 
 
     /*
